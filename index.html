@@ -289,7 +289,7 @@ STYLES.forEach(function(s){
   card.innerHTML='<div class="img-wrap"><img src="" alt="'+s.name+'" style="opacity:0.3" onload="this.style.opacity=1"><span style="position:absolute;color:#444;font-size:.85em">加载中...</span></div><div class="info"><h3>'+s.name+'</h3>'+s.tags.map(function(t){return'<span class="tag">#'+t+'</span>'}).join(' ')+'</div>';
   grid.appendChild(card);
   var img=card.querySelector('img'),seed=Math.floor(Math.random()*1000000);
-  img.src='https://image.pollinations.ai/prompt/'+encodeURIComponent(s.prompt)+'?width=540&height=960&seed='+seed+'&nologo=true';
+  img.src='https://image.pollinations.ai/prompt/'+encodeURIComponent(s.prompt)+'?width=270&height=480&seed='+seed+'&nologo=true';
 });
 
 // Populate selects
@@ -305,7 +305,7 @@ function genDemo(){
   var url='https://image.pollinations.ai/prompt/'+encodeURIComponent(s.prompt)+'?width=270&height=480&seed='+seed+'&nologo=true';
   var t=new Image();t.onload=function(){img.src=url;img.style.display='block';ph.style.display='none';btn.disabled=false;btn.textContent='✨ 重新生成'};
   t.onerror=function(){toast('生成失败，重试');btn.disabled=false;btn.textContent='✨ 生成预览'};
-  setTimeout(function(){if(btn.disabled){btn.disabled=false;btn.textContent='✨ 生成预览';toast('超时，重试')}},25000);
+  setTimeout(function(){if(btn.disabled){btn.disabled=false;btn.textContent='✨ 生成预览';toast('超时，重试')}},60000);
   t.src=url
 }
 
