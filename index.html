@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AI Wallpaper Pro · 专属高清壁纸定制 | 手机/电脑/平板</title>
+<meta name="description" content="专业AI壁纸生成服务，8大主题风格。手机壁纸、电脑桌面、平板壁纸一站式定制。HD/2K/4K品质，免费试用。">
+<meta property="og:title" content="AI Wallpaper Pro · 专属高清壁纸定制">
+<meta property="og:description" content="8大主题风格，手机/电脑/平板适配，HD/2K/4K品质。免费试用，满意再买。">
+<meta name="keywords" content="AI壁纸,壁纸生成,手机壁纸,电脑壁纸,4K壁纸,高清壁纸,AI绘画,桌面壁纸">
+<style>
+:root{--bg:#08080D;--card-bg:#111118;--text:#e0e0e0;--accent:#00F5FF;--accent2:#B44CFF;--border:rgba(255,255,255,0.06)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6}
+
+.bg-blobs{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.blob{position:absolute;border-radius:50%;filter:blur(120px);opacity:0.3;animation:floatBlob 16s ease-in-out infinite}
+.blob-1{width:600px;height:600px;background:#00F5FF;top:-10%;left:-8%}
+.blob-2{width:500px;height:500px;background:#B44CFF;top:50%;right:-10%;animation-delay:-5s}
+.blob-3{width:450px;height:450px;background:var(--accent);bottom:-10%;left:25%;animation-delay:-9s}
+@keyframes floatBlob{0%,100%{transform:translate(0,0)scale(1)}25%{transform:translate(70px,-40px)scale(1.1)}50%{transform:translate(-40px,30px)scale(.9)}75%{transform:translate(-60px,-20px)scale(1.05)}}
+
+nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(8,8,13,0.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:68px}
+.nav-logo{font-size:1.4rem;font-weight:900;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
+.nav-links a{text-decoration:none;color:#aaa;font-weight:600;font-size:.9rem;transition:color .3s}
+.nav-links a:hover{color:#fff}
+.nav-cta{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff!important;padding:.5rem 1.3rem;border-radius:50px;font-weight:700!important}
+
+section{position:relative;z-index:1;padding:5rem 2rem}
+.container{max-width:1100px;margin:0 auto}
+
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:7rem 2rem 5rem}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.45rem 1.3rem;background:linear-gradient(135deg,rgba(0,245,255,0.2),rgba(180,76,255,0.2));border:1px solid rgba(0,245,255,0.3);color:var(--accent);border-radius:50px;font-weight:700;font-size:.85rem;margin-bottom:2rem}
+.hero-badge .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.hero h1{font-size:clamp(2.2rem,5vw,4rem);font-weight:900;line-height:1.1;margin-bottom:1.2rem;letter-spacing:-1.5px}
+.hero h1 .grad{background:linear-gradient(135deg,var(--accent),var(--accent2));background-size:200% 200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:gradShift 4s ease infinite}
+@keyframes gradShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.hero-sub{font-size:1.15rem;color:#888;margin-bottom:2.5rem;max-width:500px;margin-left:auto;margin-right:auto}
+.btn-group{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 2rem;border-radius:50px;font-weight:700;font-size:1rem;text-decoration:none;cursor:pointer;transition:all .3s;border:none}
+.btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;box-shadow:0 8px 35px rgba(0,245,255,0.3)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 50px rgba(0,245,255,0.5)}
+.btn-ghost{background:transparent;color:#fff;border:2px solid rgba(255,255,255,0.2)}
+.btn-ghost:hover{border-color:var(--accent)}
+
+.section-badge{display:inline-block;padding:.35rem 1.1rem;border:1px solid rgba(0,245,255,0.4);color:var(--accent);border-radius:50px;font-weight:700;font-size:.8rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:1.2rem}
+.section-title{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;margin-bottom:1rem;letter-spacing:-1px}
+.section-sub{color:#888;max-width:600px;margin:0 auto 3rem;font-size:1.05rem}
+
+#styles{background:#0A0A14;text-align:center}
+.style-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}
+.style-card{background:var(--card-bg);border:1px solid var(--border);border-radius:20px;overflow:hidden;transition:all .3s;cursor:pointer}
+.style-card:hover{transform:translateY(-6px);border-color:var(--accent);box-shadow:0 20px 50px rgba(0,245,255,0.1)}
+.style-card .img-wrap{width:100%;aspect-ratio:9/16;background:#0a0a10;position:relative;overflow:hidden}
+.style-card .img-wrap img{width:100%;height:100%;object-fit:cover;transition:opacity .5s}
+.style-card .info{padding:14px;text-align:left}
+.style-card .info h3{font-size:.95em;font-weight:700;margin-bottom:4px}
+.style-card .tag{padding:2px 10px;border-radius:20px;font-size:.7em;background:rgba(255,255,255,0.06);color:#999;display:inline-block;margin:2px}
+
+#pricing{background:#0A0A14;text-align:center}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:1000px;margin:0 auto}
+.price-card{background:var(--card-bg);border:1px solid var(--border);border-radius:24px;padding:2.5rem 1.5rem;text-align:center;transition:all .35s;position:relative}
+.price-card:hover{transform:translateY(-6px)}
+.price-card.popular{border-color:rgba(0,245,255,0.4);background:linear-gradient(180deg,rgba(0,245,255,0.08) 0%,rgba(180,76,255,0.04) 100%)}
+.price-card.popular::before{content:'🔥 最受欢迎';position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:4px 16px;border-radius:20px;font-size:.78em;font-weight:700;white-space:nowrap}
+.price-icon{font-size:3rem;margin-bottom:1rem}
+.price-card h3{font-size:1.2rem;margin-bottom:.5rem}
+.price-card .price{font-size:2.8rem;font-weight:900;margin:1rem 0;letter-spacing:-1px}
+.price-card .price .yen{font-size:1.2rem}
+.price-card .price .orig{font-size:1rem;color:#666;text-decoration:line-through;margin-left:.5rem}
+.price-card .features{list-style:none;text-align:left;margin:1.5rem 0}
+.price-card .features li{padding:.5rem 0;color:#aaa;font-size:.9em}
+.price-card .features li::before{content:'✓ ';color:var(--accent);font-weight:700}
+.price-card .btn{width:100%;justify-content:center}
+
+#demo{background:#0C0C18;text-align:center}
+.demo-box{max-width:500px;margin:0 auto;background:var(--card-bg);border:1px solid var(--border);border-radius:24px;padding:2rem}
+.demo-box .demo-img{width:200px;height:356px;border-radius:16px;margin:0 auto 1.5rem;background:#0a0a10;display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px solid var(--border)}
+.demo-box .demo-img img{width:100%;height:100%;object-fit:cover}
+.demo-select{width:100%;padding:.8rem 1rem;margin-bottom:1rem;background:#0a0a10;border:1px solid var(--border);border-radius:12px;color:#fff;font-size:1rem;cursor:pointer}
+.demo-generate{width:100%;padding:.85rem;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border:none;border-radius:12px;font-weight:700;font-size:1rem;cursor:pointer}
+.demo-generate:disabled{opacity:.5;cursor:not-allowed}
+.demo-note{color:#666;font-size:.8em;margin-top:1rem}
+
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:200;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
+.modal-overlay.show{opacity:1;pointer-events:auto}
+.modal{background:var(--card-bg);border:1px solid var(--border);border-radius:24px;padding:2.5rem;max-width:440px;width:90%;text-align:center;position:relative}
+.modal-close{position:absolute;top:16px;right:20px;background:none;border:none;color:#666;font-size:1.5rem;cursor:pointer}
+.modal-close:hover{color:#fff}
+.modal h3{font-size:1.4rem;margin-bottom:.5rem}
+.modal .amount{font-size:2.5rem;font-weight:900;color:var(--accent);margin:.5rem 0}
+.modal .qr-section{margin:1.5rem 0}
+.modal .qr-placeholder{width:200px;height:200px;margin:0 auto 1rem;background:#fff;border-radius:16px;display:flex;align-items:center;justify-content:center}
+.modal .qr-placeholder img{width:100%;height:100%;object-fit:contain;border-radius:16px}
+.modal .qr-tabs{display:flex;gap:.5rem;justify-content:center;margin-bottom:1rem}
+.modal .qr-tab{padding:.5rem 1.2rem;border-radius:20px;border:1px solid var(--border);background:transparent;color:#aaa;cursor:pointer;font-size:.85em}
+.modal .qr-tab.active{background:#fff;color:#333;border-color:#fff;font-weight:700}
+.modal .pay-note{color:#666;font-size:.8em;margin-top:.5rem}
+
+#order{background:#0C0C18;text-align:center}
+.order-form{max-width:480px;margin:0 auto;text-align:left;background:var(--card-bg);border:1px solid var(--border);border-radius:24px;padding:2.5rem}
+.form-group{margin-bottom:1.2rem}
+.form-group label{display:block;margin-bottom:.4rem;font-weight:600;font-size:.9em}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:.75rem 1rem;background:#0a0a10;border:1px solid var(--border);border-radius:12px;color:#fff;font-size:.95rem;font-family:inherit}
+.form-group textarea{height:80px;resize:vertical}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--accent)}
+.submit-btn{width:100%;padding:.9rem;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border:none;border-radius:12px;font-weight:700;font-size:1.05rem;cursor:pointer}
+.submit-btn:disabled{opacity:.5;cursor:not-allowed}
+.success-msg{display:none;text-align:center;padding:2rem}
+.success-msg.show{display:block}
+.success-msg .check{font-size:4rem;margin-bottom:1rem}
+
+footer{text-align:center;padding:3rem 2rem;position:relative;z-index:1;color:#555;font-size:.85em;border-top:1px solid var(--border)}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#333;color:#fff;padding:10px 24px;border-radius:8px;font-size:.9em;z-index:999;pointer-events:none;opacity:0;transition:opacity .3s}
+.toast.show{opacity:1}
+
+@media(max-width:768px){
+  .nav-links{display:none}
+  .pricing-grid{grid-template-columns:1fr;max-width:360px}
+  .style-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  section{padding:4rem 1rem}
+}
+</style>
+</head>
+<body>
+
+<div class="bg-blobs">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+</div>
+
+<nav id="navbar">
+  <div class="nav-logo">AI Wallpaper Pro</div>
+  <ul class="nav-links">
+    <li><a href="#styles">风格</a></li>
+    <li><a href="#demo">试用</a></li>
+    <li><a href="#pricing">定价</a></li>
+    <li><a href="#order" class="nav-cta">下单</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-badge"><span class="dot"></span> 手机 · 电脑 · 平板 全适配</div>
+    <h1>每天打开屏幕<br>看到的都是<span class="grad">艺术品</span></h1>
+    <p class="hero-sub">8大主题风格 · AI精准生成 · 2K/4K超清 · 全设备适配</p>
+    <div class="btn-group">
+      <a href="#pricing" class="btn btn-primary">🔥 定制壁纸 · ￥12起</a>
+      <a href="#demo" class="btn btn-ghost">🎨 免费试用</a>
+    </div>
+  </div>
+</section>
+
+<section id="styles">
+  <div class="container">
+    <div class="section-badge">STYLES</div>
+    <h2 class="section-title">8 大主题风格</h2>
+    <p class="section-sub">手机竖屏壁纸，每种风格独一无二</p>
+    <div class="style-grid" id="styleGrid"></div>
+  </div>
+</section>
+
+<section id="demo">
+  <div class="container">
+    <div class="section-badge">TRY</div>
+    <h2 class="section-title">免费试用</h2>
+    <p class="section-sub">选主题→生成预览→满意下单</p>
+    <div class="demo-box">
+      <div class="demo-img"><img id="demoImg" src="" alt="预览" style="display:none"><span id="demoPH" style="color:#444">点击生成预览</span></div>
+      <select class="demo-select" id="demoStyle"><option value="">选择主题...</option></select>
+      <button class="demo-generate" id="demoBtn" onclick="genDemo()">✨ 生成预览</button>
+      <p class="demo-note">预览为低分辨率 · 付费后获得 HD/2K/4K</p>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="container">
+    <div class="section-badge">PRICING</div>
+    <h2 class="section-title">选择套餐</h2>
+    <p class="section-sub">一次购买，永久使用 · 商用授权</p>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-icon">📱</div>
+        <h3>基础版</h3>
+        <p style="color:#888;font-size:.9em">适合手机壁纸</p>
+        <div class="price"><span class="yen">￥</span>12<span class="orig">￥39</span></div>
+        <ul class="features">
+          <li>任选1种风格</li>
+          <li>1张HD手机壁纸</li>
+          <li>1080×1920</li>
+          <li>Email交付</li>
+          <li>商用授权</li>
+        </ul>
+        <button class="btn btn-primary" onclick="openPay('basic',12)">立即购买</button>
+      </div>
+      <div class="price-card popular">
+        <div class="price-icon">⭐</div>
+        <h3>专业版</h3>
+        <p style="color:#888;font-size:.9em">多设备统一风格</p>
+        <div class="price"><span class="yen">￥</span>35<span class="orig">￥99</span></div>
+        <ul class="features">
+          <li>任选3种风格</li>
+          <li>手机+电脑+平板</li>
+          <li>2K分辨率</li>
+          <li>1次免费修改</li>
+          <li>24h内交付</li>
+          <li>商用授权</li>
+        </ul>
+        <button class="btn btn-primary" onclick="openPay('pro',35)">立即购买</button>
+      </div>
+      <div class="price-card">
+        <div class="price-icon">👑</div>
+        <h3>尊享版</h3>
+        <p style="color:#888;font-size:.9em">全风格+自定义</p>
+        <div class="price"><span class="yen">￥</span>89<span class="orig">￥299</span></div>
+        <ul class="features">
+          <li>全部8种风格</li>
+          <li>全设备适配</li>
+          <li>4K超高清</li>
+          <li>自定义主题描述</li>
+          <li>无限次修改</li>
+          <li>源文件+商用授权</li>
+        </ul>
+        <button class="btn btn-primary" onclick="openPay('ultimate',89)">立即购买</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="order">
+  <div class="container">
+    <div class="section-badge">ORDER</div>
+    <h2 class="section-title">完成下单</h2>
+    <p class="section-sub">付款后填写，24h内交付</p>
+    <div class="success-msg" id="successMsg"><div class="check">✅</div><h3>订单提交成功！</h3><p>24h内发送至你的邮箱</p></div>
+    <form class="order-form" id="orderForm" onsubmit="submitOrder(event)">
+      <div class="form-group"><label>套餐 *</label><select id="orderPlan" required><option value="">请选择...</option><option value="basic">基础版 ￥12</option><option value="pro">专业版 ￥35</option><option value="ultimate">尊享版 ￥89</option></select></div>
+      <div class="form-group"><label>风格 *</label><select id="orderStyle" required><option value="">请选择...</option></select></div>
+      <div class="form-group"><label>邮箱 *</label><input type="email" id="orderEmail" placeholder="壁纸发送到此邮箱" required></div>
+      <div class="form-group"><label>设备类型</label><select id="orderDevice"><option>手机 (1080×1920)</option><option>电脑 (2560×1440)</option><option>平板 (2048×2732)</option><option>全设备套装</option></select></div>
+      <div class="form-group"><label>特殊要求</label><textarea id="orderNote" placeholder="颜色偏好、氛围描述..."></textarea></div>
+      <button type="submit" class="submit-btn">💳 提交订单</button>
+      <p style="text-align:center;color:#666;font-size:.78em;margin-top:.8rem">提交后扫码支付 · 支持微信支付</p>
+    </form>
+  </div>
+</section>
+
+<div class="modal-overlay" id="payModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closePay()">✕</button>
+    <h3>扫码支付</h3>
+    <div class="amount" id="modalAmount">￥12</div>
+    <p style="color:#888" id="modalPlan">基础版</p>
+    <div class="qr-section">
+      <div class="qr-placeholder"><img src="qr-wechat.png" alt="微信收款码"></div>
+    </div>
+    <p class="pay-note">💚 微信扫码支付 · 完成后截图保存</p>
+    <button class="btn btn-primary" style="width:100%;margin-top:.5rem" onclick="closePay()">已完成支付，去填订单 →</button>
+  </div>
+</div>
+
+<footer><p>© 2026 AI Wallpaper Pro · 专业壁纸定制 · 100%满意保证</p></footer>
+<div class="toast" id="toast"></div>
+
+<script>
+var STYLES=[
+  {id:'cyberpunk',name:'赛博朋克夜景',tags:['霓虹','未来都市','雨夜'],prompt:'A stunning cyberpunk cityscape wallpaper, neon lights reflecting on wet streets, towering skyscrapers with holographic signs, purple and cyan color palette, rain droplets, Blade Runner aesthetic, vertical phone wallpaper composition, dark moody atmosphere, 4k quality, hyperdetailed futuristic city'},
+  {id:'japan',name:'和风禅意',tags:['日式','宁静','极简'],prompt:'A serene Japanese zen garden wallpaper, cherry blossom tree with falling petals, traditional wooden bridge over koi pond, Mount Fuji in distance, soft pink and gold sunset, minimalist aesthetic, vertical composition for phone wallpaper, peaceful calming atmosphere, Studio Ghibli inspired, high quality'},
+  {id:'space',name:'宇宙星云',tags:['太空','梦幻','深邃'],prompt:'A breathtaking space nebula wallpaper, swirling purple and blue cosmic clouds, distant stars and galaxies, ethereal light rays, infinite depth, vertical phone wallpaper, dreamy celestial atmosphere, 4k quality, astronomical beauty, cosmic dust particles'},
+  {id:'forest',name:'迷雾森林',tags:['自然','治愈','绿色'],prompt:'A mystical foggy forest wallpaper, sunbeams filtering through tall pine trees, moss-covered ground, soft green and gold tones, magical atmosphere, fern details, vertical composition for phone, healing nature aesthetic, high quality nature photography style'},
+  {id:'ocean',name:'深海梦境',tags:['海洋','治愈','蓝色'],prompt:'A dreamy underwater ocean wallpaper, sunrays penetrating deep blue water, whale silhouette in distance, floating jellyfish with bioluminescent glow, coral reef details, vertical phone composition, ethereal aquatic atmosphere, calming blue tones, high quality 3D render'},
+  {id:'minimal',name:'极简几何',tags:['简约','现代','高级感'],prompt:'A minimalist geometric wallpaper, smooth gradient shapes in pastel colors, abstract 3D forms, soft shadows, clean modern aesthetic, vertical phone composition, Scandinavian design influence, calming balanced composition, high quality, Apple-inspired design language'},
+  {id:'anime',name:'动漫风',tags:['二次元','梦幻','唯美'],prompt:'An anime-style wallpaper, a girl standing on a hill under starry sky, cherry blossom petals dancing in wind, soft cel-shading art style, warm nostalgic lighting, vertical phone composition, Makoto Shinkai inspired, dreamy twilight colors, high quality anime illustration'},
+  {id:'retro',name:'复古蒸汽波',tags:['80年代','复古','潮流'],prompt:'A retro synthwave vaporwave wallpaper, neon grid landscape, palm tree silhouettes, pink and teal gradient sky, setting sun, 80s retro aesthetic, vertical phone composition, nostalgic gaming vibes, chrome metallic reflections, high quality digital art'}
+];
+
+var toastEl=document.getElementById('toast'),toastTimer;
+function toast(m){if(toastTimer)clearTimeout(toastTimer);toastEl.textContent=m;toastEl.classList.add('show');toastTimer=setTimeout(function(){toastEl.classList.remove('show')},2500)}
+
+// Build style grid
+var grid=document.getElementById('styleGrid');
+STYLES.forEach(function(s){
+  var card=document.createElement('div');card.className='style-card';
+  card.innerHTML='<div class="img-wrap"><img src="" alt="'+s.name+'" style="opacity:0.3" onload="this.style.opacity=1"><span style="position:absolute;color:#444;font-size:.85em">加载中...</span></div><div class="info"><h3>'+s.name+'</h3>'+s.tags.map(function(t){return'<span class="tag">#'+t+'</span>'}).join(' ')+'</div>';
+  grid.appendChild(card);
+  var img=card.querySelector('img'),seed=Math.floor(Math.random()*1000000);
+  img.src='https://image.pollinations.ai/prompt/'+encodeURIComponent(s.prompt)+'?width=540&height=960&seed='+seed+'&nologo=true';
+});
+
+// Populate selects
+var sel=[document.getElementById('demoStyle'),document.getElementById('orderStyle')];
+sel.forEach(function(sl){if(!sl)return;STYLES.forEach(function(s){var o=document.createElement('option');o.value=s.id;o.textContent=s.name;sl.appendChild(o)})});
+
+// Demo
+function genDemo(){
+  var sid=document.getElementById('demoStyle').value;if(!sid){toast('请选择主题');return}
+  var s=STYLES.filter(function(x){return x.id===sid})[0],btn=document.getElementById('demoBtn');
+  btn.disabled=true;btn.textContent='生成中...';
+  var img=document.getElementById('demoImg'),ph=document.getElementById('demoPH'),seed=Math.floor(Math.random()*1000000);
+  var url='https://image.pollinations.ai/prompt/'+encodeURIComponent(s.prompt)+'?width=270&height=480&seed='+seed+'&nologo=true';
+  var t=new Image();t.onload=function(){img.src=url;img.style.display='block';ph.style.display='none';btn.disabled=false;btn.textContent='✨ 重新生成'};
+  t.onerror=function(){toast('生成失败，重试');btn.disabled=false;btn.textContent='✨ 生成预览'};
+  setTimeout(function(){if(btn.disabled){btn.disabled=false;btn.textContent='✨ 生成预览';toast('超时，重试')}},25000);
+  t.src=url
+}
+
+// Payment
+var currPay={plan:'',amount:0};
+function openPay(p,a){currPay={plan:p,amount:a};document.getElementById('modalAmount').textContent='￥'+a;var n={basic:'基础版',pro:'专业版',ultimate:'尊享版'};document.getElementById('modalPlan').textContent=n[p];document.getElementById('payModal').classList.add('show');document.getElementById('orderPlan').value=p;document.getElementById('order').scrollIntoView({behavior:'smooth'})}
+function closePay(){document.getElementById('payModal').classList.remove('show');document.getElementById('order').scrollIntoView({behavior:'smooth'})}
+document.getElementById('payModal').addEventListener('click',function(e){if(e.target===this)closePay()});
+
+// Order
+function submitOrder(e){
+  e.preventDefault();
+  var pl=document.getElementById('orderPlan').value,st=document.getElementById('orderStyle').value;
+  var em=document.getElementById('orderEmail').value,dev=document.getElementById('orderDevice').value;
+  var note=document.getElementById('orderNote').value;
+  if(!pl||!st||!em){toast('请填写必填项');return}
+  var pn={basic:{name:'基础版',price:12},pro:{name:'专业版',price:35},ultimate:{name:'尊享版',price:89}};
+  var sn={};STYLES.forEach(function(s){sn[s.id]=s.name});
+  var order={id:'WLP'+Date.now().toString(36).toUpperCase(),plan:pn[pl],style:sn[st],email:em,device:dev,note:note,time:new Date().toISOString()};
+  var orders=JSON.parse(localStorage.getItem('wallpaperOrders')||'[]');orders.push(order);
+  localStorage.setItem('wallpaperOrders',JSON.stringify(orders));
+  document.getElementById('orderForm').style.display='none';document.getElementById('successMsg').classList.add('show');
+}
+</script>
+</body>
+</html>
