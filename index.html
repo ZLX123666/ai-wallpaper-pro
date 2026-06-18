@@ -283,6 +283,7 @@ var toastEl=document.getElementById('toast'),toastTimer;
 function toast(m){if(toastTimer)clearTimeout(toastTimer);toastEl.textContent=m;toastEl.classList.add('show');toastTimer=setTimeout(function(){toastEl.classList.remove('show')},2500)}
 
 // Build style grid with gradient placeholders (fast load, no API wait)
+var grid=document.getElementById('styleGrid');
 var gradients={
   cyberpunk:'linear-gradient(135deg,#0a0a2e,#1a0a3e,#0a1a2e,#1a0a2e)',
   japan:'linear-gradient(135deg,#1a0a0a,#3e1a1a,#2e1a0a,#3e0a1a)',
