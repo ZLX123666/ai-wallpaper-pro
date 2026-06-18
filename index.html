@@ -282,14 +282,22 @@ var STYLES=[
 var toastEl=document.getElementById('toast'),toastTimer;
 function toast(m){if(toastTimer)clearTimeout(toastTimer);toastEl.textContent=m;toastEl.classList.add('show');toastTimer=setTimeout(function(){toastEl.classList.remove('show')},2500)}
 
-// Build style grid
-var grid=document.getElementById('styleGrid');
+// Build style grid with gradient placeholders (fast load, no API wait)
+var gradients={
+  cyberpunk:'linear-gradient(135deg,#0a0a2e,#1a0a3e,#0a1a2e,#1a0a2e)',
+  japan:'linear-gradient(135deg,#1a0a0a,#3e1a1a,#2e1a0a,#3e0a1a)',
+  space:'linear-gradient(135deg,#0a0a2e,#1a0a3e,#2e0a1a,#0a1a3e)',
+  forest:'linear-gradient(135deg,#0a1a0a,#0a2e0a,#1a2e0a,#0a1a1a)',
+  ocean:'linear-gradient(135deg,#0a1a2e,#0a0a3e,#0a1a1a,#0a2e3e)',
+  minimal:'linear-gradient(135deg,#1a1a1a,#2a2a2a,#1a1a2a,#2a1a2a)',
+  anime:'linear-gradient(135deg,#1a0a2e,#2e0a3e,#3e1a2e,#2e0a1a)',
+  retro:'linear-gradient(135deg,#2e0a1a,#3e1a0a,#2e0a2e,#1a0a3e)'
+};
 STYLES.forEach(function(s){
   var card=document.createElement('div');card.className='style-card';
-  card.innerHTML='<div class="img-wrap"><img src="" alt="'+s.name+'" style="opacity:0.3" onload="this.style.opacity=1"><span style="position:absolute;color:#444;font-size:.85em">加载中...</span></div><div class="info"><h3>'+s.name+'</h3>'+s.tags.map(function(t){return'<span class="tag">#'+t+'</span>'}).join(' ')+'</div>';
+  var bg=gradients[s.id]||'linear-gradient(135deg,#111,#222)';
+  card.innerHTML='<div class="img-wrap" style="background:'+bg+';display:flex;align-items:center;justify-content:center;font-size:2.5rem">'+s.name.charAt(0)+'</div><div class="info"><h3>'+s.name+'</h3>'+s.tags.map(function(t){return'<span class="tag">#'+t+'</span>'}).join(' ')+'</div>';
   grid.appendChild(card);
-  var img=card.querySelector('img'),seed=Math.floor(Math.random()*1000000);
-  img.src='https://image.pollinations.ai/prompt/'+encodeURIComponent(s.prompt)+'?width=270&height=480&seed='+seed+'&nologo=true';
 });
 
 // Populate selects
