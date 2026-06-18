@@ -311,7 +311,7 @@ function genDemo(){
   var s=STYLES.filter(function(x){return x.id===sid})[0],btn=document.getElementById('demoBtn');
   btn.disabled=true;btn.textContent='生成中...';
   var img=document.getElementById('demoImg'),ph=document.getElementById('demoPH'),seed=Math.floor(Math.random()*1000000);
-  var url='https://image.pollinations.ai/prompt/'+encodeURIComponent(s.prompt)+'?width=270&height=480&seed='+seed+'&nologo=true';
+  var url='https://image.pollinations.ai/prompt/'+encodeURIComponent(s.prompt)+'?width=270&height=480&seed='+seed+'&nologo=truemodel=turbo&nologo=truenologo=true';
   var t=new Image();t.onload=function(){img.src=url;img.style.display='block';ph.style.display='none';btn.disabled=false;btn.textContent='✨ 重新生成'};
   t.onerror=function(){toast('生成失败，重试');btn.disabled=false;btn.textContent='✨ 生成预览'};
   setTimeout(function(){if(btn.disabled){btn.disabled=false;btn.textContent='✨ 生成预览';toast('超时，重试')}},60000);
